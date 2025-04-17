@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About Me</title>
+    <style>
+        :root {
+            --primary: #2563eb;    /* Azul más vibrante */
+            --secondary: #2dd4bf;  /* Turquesa moderno */
+            --accent: #7c3aed;     /* Púrpura eléctrico */
+            --dark: #0f172a;       /* Azul oscuro profundo */
+            --light: #f8fafc;      /* Blanco suave */
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+    
+        body {
+            background: var(--dark);
+            margin: 0;
+            font-family: 'Poppins', system-ui, sans-serif;
+            color: var(--light);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+    
+        header {
+            background: var(--gradient);
+            padding: 4rem 0 6rem;
+            text-align: center;
+            clip-path: ellipse(120% 100% at 50% 0%);
+            margin-bottom: -3rem;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.1) 60%, transparent 80%);
+            animation: shine 8s infinite;
+        }
+    
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    
+        main {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+    
+        #main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+    
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+    
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+        }
+    
+        .profile-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            border: 3px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s ease;
+        }
+    
+        .profile-img:hover {
+            transform: scale(0.98) rotate(-1deg);
+        }
+    
+        h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            letter-spacing: -1px;
+            font-weight: 800;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    
+        h2 {
+            color: var(--secondary);
+            margin: 0 0 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+    
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+    
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 1rem;
+        }
+    
+        .skills-list li {
+            padding: 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+    
+        .skills-list li::before {
+            content: '▹';
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+    
+        .skills-list li:hover {
+            transform: translateX(8px);
+        }
+    
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            padding: 3rem 0;
+        }
+    
+        .project-card {
+            background: linear-gradient(145deg, rgba(45,212,191,0.05) 0%, rgba(124,58,237,0.05) 100%);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid rgba(125, 92, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.03) 50%, transparent 60%);
+            animation: shine 8s infinite;
+            z-index: 0;
+        }
+    
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(45,212,191,0.1);
+        }
+    
+        .project-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.4s ease;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+    
+        .project-card:hover img {
+            transform: scale(1.02);
+        }
+    
+        .project-card h3 {
+            color: var(--light);
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+    
+        .project-card p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+    
+        .button {
+            background: var(--gradient);
+            color: var(--light);
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+    
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent) 0%, var(--primary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+    
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124,58,237,0.3);
+        }
+    
+        .button:hover::before {
+            opacity: 1;
+        }
+    
+        footer {
+            background: rgba(15, 23, 42, 0.95);
+            padding: 3rem 0;
+            margin-top: 6rem;
+            position: relative;
+        }
+    
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient);
+        }
+    
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+    
+        footer a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+    
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .profile-img {
+                height: 360px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Matías Quintana</h1>
+    </header>
+
+    <main>
+        <section id="main-content">
+            <article class="card">
+                <img src="./imgs/matias.png" alt="Matias Quintana" class="profile-img">
+            </article>
+
+            <article class="card">
+                <h2>About Me</h2>
+                <p>
+                    Hello! I'm Matías Quintana, a 17-year-old Computer Science student from Trinidad, Flores, Uruguay. Currently studying at UTU, I'm passionate about programming, software development, and exploring new technologies.
+                </p>
+                <p>
+                    My curiosity drives me to constantly learn and create. After high school, I plan to pursue Mechatronics to combine my love for software and hardware, aiming to develop innovative solutions for real-world challenges.
+                </p>
+                <a href="./pdf/Matias Quintana (1).pdf" class="button" target="_blank">View My CV</a>
+            </article>
+
+            <article class="card">
+                <h2>My Skills</h2>
+                <ul class="skills-list">
+                    <li>Java Programming</li>
+                    <li>Database Management (MySQL)</li>
+                    <li>Web Development (HTML, CSS)</li>
+                    <li>electronics</li>
+                    <li>Game Development with Godot</li>
+                </ul>
+            </article>
+        </section>
+
+        <h2>Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Cursed Lantern</h3>
+                <img src="./imgs/Cursed Lantern.png" alt="">
+                <p>Cursed Lantern es un juego de estrategia donde debes encontrar fragmentos de recuerdos de tu vida que están en pedazos de dibujos. Esto es una demo técnica; todavía falta todo lo artístico y mejorar e implementar muchas cosas, pero es una demo para mostrar lo que quiero lograr.</p>
+                <a href="https://cursedlantern.itch.io/cursed-lantern?secret=lTKNm34bWq5jxtWmjnZJWrGKdA" class="button">More Information</a>
+            </div>
+            <div class="project-card">
+                <h3>Employee Management Application</h3>
+                <img src="./imgs/GstorEmpleados.png" alt="">
+                <img src="./imgs/GestorEmpleados2.png" alt="">
+                <p>This system allows users to register, and an administrator assigns them a role (Administrator, Employee, or Guest). Employees can view their tasks and mark them as completed. Administrators have full control: they create, edit, and delete tasks, manage users, and assign responsibilities. The system offers a clear interface tailored to each user's role.</p>
+                <a href="https://drive.google.com/drive/folders/11itI85r2PuwmI9FvXKbBfAQl0UDSoXF_?usp=drive_link" class="button">More Information</a>
+            </div>
+            <div class="project-card">
+                <h3>Plane Collision Simulator 3D</h3>
+                <img src="./imgs/avion.jpg" alt="">
+                <p>It's a collision simulator I made for a physics assignment. In this game you can crash things with a plane.</p>
+                <a href="https://cursedlantern.itch.io/avion-colicion-simulador-3d?secret=uOA4mAUd9OFNNcgXZ7IVnSwJyI" class="button">More Information</a>
+            </div>
+           
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Cursed Lantern</p>
+        <p>
+          📧 <a href="mailto:cursedlanternuy@gmail.com">cursedlanternuy@gmail.com</a><br>
+          📸 <a href="https://www.instagram.com/cursedlanternuy?igsh=MTI5ODM2MWJpbXhtdg==" target="_blank">@cursedlanternuy</a>
+        </p>
+    </footer>
+</body>
+</html>
